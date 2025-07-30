@@ -12,6 +12,7 @@ You can install the development version of vinexplorer from [GitHub](https://git
 
 ``` r
 devtools::install_github("Programming-The-Next-Step-2025/wine-explorer")
+library(vinexplorer)
 ```
 
 
