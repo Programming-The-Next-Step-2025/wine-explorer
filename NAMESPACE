@@ -3,3 +3,4 @@
 export(filter_wines)
 export(load_region_coords)
 export(load_wine_data)
+export(run_app)

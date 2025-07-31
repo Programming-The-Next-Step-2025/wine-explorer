@@ -7,10 +7,6 @@
 load_region_coords(
   path = system.file("extdata", "RegionCoordinates.csv", package = "vinexplorer")
 )
-
-load_region_coords(
-  path = system.file("extdata", "RegionCoordinates.csv", package = "vinexplorer")
-)
 }
 \arguments{
 \item{path}{Optional path override. By default reads
@@ -18,19 +14,12 @@ load_region_coords(
 }
 \value{
 A tibble with columns \code{region, lat, lon}.
-
-A tibble with columns \code{region, lat, lon}.
 }
 \description{
 Reads a CSV with columns \code{region, lat, lon} from inside the package.
 Trims region names and ensures numeric lat/lon.
-
-Reads a CSV with columns \code{region, lat, lon} from inside the package.
-Trims region names and ensures numeric lat/lon.
 }
 \examples{
-coords <- vinexplorer::load_region_coords()
-head(coords)
 coords <- vinexplorer::load_region_coords()
 head(coords)
 }

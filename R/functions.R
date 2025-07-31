@@ -98,7 +98,7 @@ load_region_coords <- function(
   if (is.null(path) || !file.exists(path)) {
     stop("Region coordinates file not found. Expected inst/extdata/RegionCoordinates.csv.", call. = FALSE)
   }
-  coords <- readr::read_csv(path, show_col_types = FALSE)
+  coords <- readr::read_delim(path, show_col_types = FALSE)
   names(coords) <- tolower(names(coords))
   req <- c("region","lat","lon")
   miss <- setdiff(req, names(coords))
@@ -137,35 +137,3 @@ filter_wines <- function(data, types = NULL, country = NULL, region = NULL) {
   out
 }
 
-#' Load region coordinates from inst/extdata/RegionCoordinates.csv
-#'
-#' Reads a CSV with columns \code{region, lat, lon} from inside the package.
-#' Trims region names and ensures numeric lat/lon.
-#'
-#' @param path Optional path override. By default reads
-#'   \code{inst/extdata/RegionCoordinates.csv}.
-#' @return A tibble with columns \code{region, lat, lon}.
-#' @examples
-#' coords <- vinexplorer::load_region_coords()
-#' head(coords)
-#' @export
-load_region_coords <- function(
-    path = system.file("extdata", "RegionCoordinates.csv", package = "vinexplorer")
-) {
-  if (is.null(path) || !file.exists(path)) {
-    stop("Region coordinates file not found. Expected inst/extdata/RegionCoordinates.csv.", call. = FALSE)
-  }
-  coords <- readr::read_delim(path, delim = ";", show_col_types = FALSE)
-  names(coords) <- tolower(names(coords))
-  req <- c("region","lat","lon")
-  miss <- setdiff(req, names(coords))
-  if (length(miss)) stop("Coordinates file missing columns: ", paste(miss, collapse = ", "), call. = FALSE)
-  
-  coords <- coords |>
-    dplyr::transmute(
-      region = stringr::str_trim(.data$region),
-      lat = suppressWarnings(as.numeric(.data$lat)),
-      lon = suppressWarnings(as.numeric(.data$lon))
-    )
-  coords
-}
