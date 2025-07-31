@@ -16,4 +16,6 @@ Imports:
     dplyr,
     leaflet,
     readr,
-    stringr
+    shiny,
+    stringr,
+    tibble
