@@ -19,3 +19,7 @@ Imports:
     shiny,
     stringr,
     tibble
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
